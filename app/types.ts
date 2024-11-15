@@ -3,7 +3,7 @@ export interface IPokemonItem {
   id: number;
   name: string;
   image: string;
-  isFavourite: boolean;
+  isFavorite: boolean;
 }
 
 export interface IGetAllPokemonResp {

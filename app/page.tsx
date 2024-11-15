@@ -1,10 +1,8 @@
 'use client';
 
-import PokemonCard from '@/components/card/PokemonCard';
-import { useGetAllPokemon, useGetPokemonByUrl } from './hooks';
-import { useMemo } from 'react';
-import { IPokemonItem } from './types';
+import { useGetAllPokemon } from './hooks';
 import { Skeleton } from '@/components/ui/skeleton';
+import PokemonData from '@/components/card/PokemonData';
 
 export default function Home() {
   const { data, isLoading } = useGetAllPokemon();
@@ -30,23 +28,3 @@ export default function Home() {
     </>
   );
 }
-
-const PokemonData = ({ url }: { url: string }) => {
-  const { data, isLoading } = useGetPokemonByUrl(url);
-
-  const pokemonData = useMemo<IPokemonItem>(() => {
-    if (!data) return { id: 0, name: '', image: '', isFavourite: false };
-
-    const newData = data.data;
-    return {
-      id: newData.id,
-      name: newData.name,
-      image: newData.sprites.other.dream_world.front_default,
-      isFavourite: false,
-    };
-  }, [data]);
-
-  if (isLoading) return <Skeleton className="rounded-lg size-full" />;
-
-  return <PokemonCard item={pokemonData} />;
-};
