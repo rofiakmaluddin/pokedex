@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import QueryProvider from '@/providers/react-query';
+import Navbar from '@/components/navbar/Navbar';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -16,7 +17,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: 'Pokedex',
-  description: 'Find your favourite Pokemon',
+  description: 'Find your favorite Pokemon',
 };
 
 export default function RootLayout({
@@ -30,7 +31,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <QueryProvider>
-          <main className="container mx-auto bg-neutral-100 text-app-text min-h-screen">
+          <Navbar />
+          <main className="container mx-auto bg-neutral-100 text-black min-h-screen p-10">
             {children}
           </main>
         </QueryProvider>
